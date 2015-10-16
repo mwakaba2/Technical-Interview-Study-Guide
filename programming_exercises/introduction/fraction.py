@@ -2,6 +2,8 @@
 from __future__ import division
 
 def reduced(m,n):
+    if m == 0 or n == 0:
+        return 0
     num = m
     den = n
     # Using Euclid's Algorithm to solve gcd
@@ -15,11 +17,21 @@ def reduced(m,n):
 
 class Fraction:
     def __init__(self,top,bottom):
+        if not isinstance(top, int) and not isinstance(bottom, int):
+            raise RuntimeError('The numerator and denominator must be an int')
+        elif not isinstance(top, int) :
+            raise RuntimeError('The numerator must be an int')
+        elif not isinstance(bottom, int):
+            raise RuntimeError('The denominator must be an int')
+
         self.num = top
         self.den = bottom
 
     def __str__(self):
-        return str(self.num)+"/"+str(self.den)
+        if self.den < 0:
+            return "-"+str(self.num)+"/"+str(-1*self.den)
+        else:
+            return str(self.num)+"/"+str(self.den)
 
     def show(self):
         print(self.num,"/",self.den)
@@ -33,8 +45,11 @@ class Fraction:
     def __add__(self,other):
         newnum = self.num*other.den + self.den*other.num
         newden = self.den * other.den
-        added = reduced(newnum,newden)
-        return added
+        if newnum == 0:
+            return 0
+        else: 
+            added = reduced(newnum,newden)
+            return added
 
     def __eq__(self, other):
         firstnum = self.num * other.den
@@ -64,31 +79,43 @@ class Fraction:
     def __sub__(self, other):
         newnum = self.num*other.den - self.den*other.num
         newden = self.den * other.den
-        subtracted = reduced(newnum,newden)
-        return subtracted
+        if newnum == 0:
+            return 0
+        else: 
+            subtracted = reduced(newnum,newden)
+            return subtracted
 
     def __mul__(self, other):
         newnum = self.num*other.num
         newden = self.den*other.den
-        multiplied = reduced(newnum, newden)
-        return multiplied
+        if newnum == 0:
+            return 0
+        else:
+            multiplied = reduced(newnum, newden)
+            return multiplied
 
     def __truediv__(self, other):
         newnum = self.num*other.den
         newden = self.den*other.num
-        divided = reduced(newnum, newden)
-        return divided
+        if newnum == 0:
+            return 0
+        else:
+            divided = reduced(newnum, newden)
+            return divided
 
 x = Fraction(1,2)
 y = Fraction(2,3)
-print(x+y)
-print(x == y)
-print(x > y)
-print(x >= y)
-print(x < y)
-print(x <= y)
-print(x - y)
-print(x * y)
-print(x / y)
-print(x.getNum())
-print(x.getDen())
+# print(x+y)
+# print(x == y)
+# print(x > y)
+# print(x >= y)
+# print(x < y)
+# print(x <= y)
+# print(x - y)
+# print(x * y)
+# print(x / y)
+# print(x.getNum())
+# print(x.getDen())
+c = Fraction(1, -2)
+# print(c)
+print(x/c)
