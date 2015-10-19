@@ -87,13 +87,12 @@ def shortestDetour(A, B, C, D, unit="miles"):
 
 	detour_dist = AC_dist + DB_dist
 	diff = difference(AB_dist, CD_dist)
-
 	# If distance AB is greater or equal, we will choose route ACDB. 
 	if AB_dist >= CD_dist:
 		detour_dist += CD_dist
 		return 'A: {0} -> \nC: {1} -> \nD: {2} -> \nB: {3}'.format(A.get_addr(), C.get_addr(), D.get_addr(), B.get_addr()), \
 		'\nShortest detour: {0} {1}'.format(detour_dist, unit), \
-		'\nDifference between the longer detour: {0}'.format(diff)
+		'\nDifference between the longer detour: {0} {1}'.format(diff, unit)
 
 	# else route CABD
 	else:
@@ -117,22 +116,22 @@ if __name__ == "__main__":
     main()
 
 #### EXAMPLES For testing ####
-# bloomington = '40.4842 -88.9936'
-# peoria = '40.7208 -89.6094'
-# chicago = '41.8369 -87.6847'
-# urbana_champaign = '40.1097 -88.2042'
-
-	# Enter latitude and longitude for A (must be a float): 40.4842 -88.9936
-	# Enter latitude and longitude for B (must be a float): 40.7208 -89.6094
-	# Enter latitude and longitude for C (must be a float): 41.8369 -87.6847
-	# Enter latitude and longitude for D (must be a float): 40.1097 -88.2042
-	# C: Lower West Side, Chicago, IL, USA -> 
-	# A: Bloomington, IL, USA -> 
-	# B: 1021 W Hanssler Pl, Peoria, IL 61604, USA -> 
-	# D: Urbana, IL 61801, USA 
-	# Shortest detour: 268.8047 miles 
-	# Difference between the longer detour: 100.9105 miles
-
+# Example 1
+	# lyft_office = '37.760339 -122.412672'
+	# stanford_campus = '37.428264 -122.168845'
+	# SFO = '37.621313 -122.378955'
+	# apple_hq = '37.332112 -122.030776'
+	# Enter latitude and longitude for A (must be a float): 37.760339 -122.412672
+	# Enter latitude and longitude for B (must be a float): 37.428264 -122.168845
+	# Enter latitude and longitude for C (must be a float): 37.621313 -122.378955
+	# Enter latitude and longitude for D (must be a float): 37.332112 -122.030776
+	# A: Mission District, San Francisco, CA, USA -> 
+	# C: 173 Airport Access Rd, San Francisco, CA 94128, USA -> 
+	# D: Cupertino, CA 95014, USA -> 
+	# B: Serra Mall @ Lasuen Mall, Stanford, CA 94305, USA 
+	# Shortest detour: 57.6009 miles 
+	# Difference between the longer detour: 0.0622 miles
+	
 # Example 2
 	# newyork = '40.7127 -74.0059'
 	# sanfrancisco = '37.7833 -122.4167'
