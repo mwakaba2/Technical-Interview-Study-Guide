@@ -1,0 +1,95 @@
+Question: Axis Aligned Rectangles
+
+	Given an unsorted array of axis aligned rectangles, return any pair of rectangles that
+	overlap. Each rectangle is defined by the upper left corner and the bottom right corner
+	coordinates.
+	
+	Brute Force Solution: Iterate through each rectangle and compare that rectangle against 
+	the other rectangles. Compare by checking whether the upper left corner or the bottom 
+	right corner is within the range of the current rectangle. 
+	
+	Upper left: (ULx1, ULy1) (ULx2, ULy2)
+	Bottom right: (BRx1, BRy1) (BRx2, BRy2)
+
+	where ULx2 or BRx2 is within [ULx1, BRx1]
+	where ULy2, or BRy2 is within [ULy2, BRy2]
+	
+	Better Solution: 
+	First, create a sorted array of the x coordinates from the rectangles
+	Use a scanline to move from left to right through the rectangles
+	keep a binary search tree for the y coordinates that overlap with the scanline
+	For each element in the array, check if the overlap is a left or a right edge
+	If its right, remove the top and bottom y coordinates from the tree
+	If it is a left edge, then search the BST for rectangles that overlap with the current 
+	rectangle.
+	If there is one, return the overlap
+	Add the top and bottom y coordinates to the BST
+	Time Complexity: O(nlogn)
+	Sorting takes O(nlogn)
+	
+	
+Doubly Linked Lists:
+
+remove a single occurence of the integer in a doubly linked list
+
+Question: Minimum Stack
+   Push -> if smaller than the first element then prepend, else append
+   Pop -> pop the first one
+   Find Minimum -> the first element in the stack
+   
+Minimum Stack
+Go over minimum stack concept later
+
+Hashtables:
+practice defining basic data structures
+
+
+Question: Coin Flipping and Die Rolls
+Do three coin tosses and use each output as a a bit for the three bit number
+If the number is within the range of 1 to 6, then output else try again
+
+Question: Target Sum
+Good Solution One :
+
+Sort the array and use two pointers to keep track of the current sum
+Time Complexity: O(nlogn)
+
+Second Good Solution:
+
+Create a binary tree with nodes of x - element in the array.
+If you find an element in the BST then you found a sum
+It takes O(nlogn) to create a BST from an array
+It takes O(nlogn) to lookup each element from the array in the BST
+
+Question: Debugging
+
+	Narrow the area that has the bug. Use breakpoints and a stepper function to 
+	make a step in the code.
+	Print statements help to see how the variables are changing
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

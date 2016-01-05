@@ -18,8 +18,9 @@ class MinStack:
 	# @return nothing
 	def pop(self):
 		if len(self.stack) != 0:
-			self.stack.pop()
+			popped = self.stack.pop()
 			self.minimums.pop()
+		return popped
 
 	# @return an integer
 	def top(self):
@@ -30,8 +31,21 @@ class MinStack:
 
 	# @return an integer
 	def getMin(self):
-		if len(self.minimums) != 0:
+		try:
 			return self.minimums[-1]
-		else:
-			return -1
+		except IndexError as ie:
+			return "no elements in the stack"
+			
 
+
+minimum_stack = MinStack()
+print(minimum_stack.getMin())
+minimum_stack.push(5)
+minimum_stack.push(6)
+minimum_stack.push(4)
+minimum_stack.push(1)
+minimum_stack.push(7)
+minimum_stack.push(2)
+print(minimum_stack.stack)
+print(minimum_stack.minimums)
+print(minimum_stack.pop())
