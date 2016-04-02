@@ -94,8 +94,97 @@ class SinglyLinkedList:
 				current.setNext(newNode)
 				self.length += 1
 		
+	'''
+	Time Complexity: O(1)
+	Space Complexity: O(1)
+	'''
+	def deleteFromBeginning(self):
+		if self.length == 0:
+			print "This list is empty"
+		else:
+			self.head = self.head.getNext()
+			self.length -=1
+	'''
+	Time Complexity: O(n)
+	Space Complexity: O(1)
+	'''
+	def deleteLast(self):
+		if self.length == 0:
+			print "The list is empty"
+		else:
+			current = self.head
+			previous = self.head
 
+			while current.getNext() != None:
+				previous = current
+				current = current.getNext()
 
+			previous.setNext() = None
+			self.length -= 1
+
+	'''
+	Time Complexity: O(n)
+	Space Complexity: O(1)
+	'''
+	def deleteWithNode(self, node):
+		if self.length == 0:
+			raise ValueError("List is empty")
+		else:
+			current = self.head
+			previous = None
+			found = False
+
+			while not found:
+				if current == node:
+					found = True
+				elif current is None:
+					raise ValueError("Node not in linked list")
+				else:
+					previous = current
+					current = current.getNext()
+
+			if previous = None:
+				self.head = current.getNext()
+			else:
+				previous.setNext(current.getNext())
+			self.length -= 1
+
+	def deleteWithValue(self, value):
+		current = self.head
+		previous = self.head
+
+		while not current.getNext() != None or current.data != value:
+			if current.data == value:
+				previous.setNext() = current.getNext()
+				self.length -= 1
+				return
+			else:
+				previous = current
+				current = current.getNext()
+
+		print "No such value in the linked list"
+
+	def deleteAtPosition(self, pos):
+		count = 0
+		current = self.head
+		previous = self.head
+
+		if pos > self.length or pos < 0:
+			print "Invalid position"
+		else:
+			while current.getNext() != None or count < pos:
+				count = count + 1
+				if count == pos:
+					previous.setNext() = current.getNext()
+					self.length -=1
+					return
+				else:
+					previous = current
+					current = current.getNext()
+		
+
+	def clear(self):
+		self.head = None
 
 
 if __name__ == '__main__':
